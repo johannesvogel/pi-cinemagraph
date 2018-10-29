@@ -1,0 +1,7 @@
+cinemagraphs
+.python-version
+.vscode
+venv
+__pycache__
+*.pyc
+
