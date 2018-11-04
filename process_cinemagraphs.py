@@ -3,8 +3,7 @@ import sys
 
 from moviepy.editor import VideoFileClip, concatenate_videoclips
 
-FINAL_CLIP_LENGTH = 30  # seconds
-RESOLUTION = (1024, 600)
+FINAL_CLIP_LENGTH = 90  # seconds
 
 def process_cinemagraphs():
   cinemagraphs = []
@@ -32,11 +31,12 @@ def process_cinemagraphs():
     clip_length = clip.duration
     loops = int(FINAL_CLIP_LENGTH / clip_length)
 
-    clip_list = []
-    for i in range(loops):
-      clip_list.append(clip)
-
-    final_clip = concatenate_videoclips(clip_list)
-    final_clip.resize(RESOLUTION).write_videofile(processed_path, audio=False)
+    looped_clip = clip.loop(n=loops)
+    looped_clip.write_videofile(
+      processed_path,
+      audio=False,
+      codec='mpeg4',
+      bitrate='2500k',
+    )
 
   print('Processed {} new cinemagraph(s).'.format(len(cinemagraphs)))

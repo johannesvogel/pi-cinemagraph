@@ -1,8 +1,11 @@
 print('Starting application...')
 
 from process_cinemagraphs import process_cinemagraphs
-from player import play
+from sys import platform
 
 process_cinemagraphs()
-play()
+
+if platform != "win32":
+    from player import play
+    play()
 
