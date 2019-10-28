@@ -27,6 +27,7 @@ def play():
 
     previous_player = current_player
     current_player = OMXPlayer(path, args=['--loop', '--no-osd', '-b'], dbus_name=dbus_name)
+    current_player.set_video_pos(0, 0, 1024, 600)
 
     if previous_player is not None:
       previous_player.quit()
